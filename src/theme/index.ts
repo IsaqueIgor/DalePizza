@@ -1,6 +1,5 @@
 export default {
   COLORS: {
-    // eslint-disable-next-line prettier/prettier
     BACKGROUND: '#F7F7F7',
 
     PRIMARY_900: '#B83341',
