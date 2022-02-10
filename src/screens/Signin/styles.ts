@@ -1,11 +1,12 @@
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 import { LinearGradient } from 'react-native-linear-gradient'
+import { View } from 'react-native';
 
-export const Container = styled(LinearGradient).attrs(({ theme }) => ({
-  colors: theme.COLORS.GRADIENT,
-  start: { x: 0, y: 1},
-  end: { x: 0.5, y: 0.5}
-}))`
+export const GradientBackground = styled.View`
   flex: 1;
-  justify-content: center
-`
+  justify-content: center;
+
+  ${({ theme }) => css`
+		background-color: ${theme.COLORS.PRIMARY_900};
+	`}
+`;

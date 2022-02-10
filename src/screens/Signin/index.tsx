@@ -1,6 +1,20 @@
 import React from 'react';
-import { Container } from './styles';
+import Input from '../../components/input';
+import { GradientBackground } from './styles';
 
-export function Signin() {
-  return <Container />;
-}
+const Signin = () => {
+  return (
+    <GradientBackground>
+      <Input
+        placeholder="E-mail"
+        type="secondary"
+        autoCorrect={false}
+        autoCapitalize="none"
+      />
+
+      <Input placeholder="Password" type="secondary" secureTextEntry />
+    </GradientBackground>
+  );
+};
+
+export default Signin;
