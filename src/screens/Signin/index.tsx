@@ -1,5 +1,6 @@
 import React from 'react';
-import Input from '../../components/input';
+import Button from 'src/components/button';
+import Input from 'src/components/input';
 import { GradientBackground } from './styles';
 
 const Signin = () => {
@@ -13,6 +14,8 @@ const Signin = () => {
       />
 
       <Input placeholder="Password" type="secondary" secureTextEntry />
+
+      <Button title="Sign in" type="secondary" />
     </GradientBackground>
   );
 };
