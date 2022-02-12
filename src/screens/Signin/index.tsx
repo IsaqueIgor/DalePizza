@@ -4,7 +4,16 @@ import { KeyboardAvoidingView, Platform } from 'react-native';
 import Button from 'src/components/button';
 import Input from 'src/components/input';
 
-import { Content, GradientBackground, Title } from './styles';
+import brandImg from 'assets/brand.png';
+
+import {
+  Content,
+  GradientBackground,
+  Title,
+  Brand,
+  ForgorPasswordLabel,
+  ForgotPasswordButton,
+} from './styles';
 
 const Signin = () => {
   return (
@@ -13,6 +22,7 @@ const Signin = () => {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         <Content>
+          <Brand source={brandImg} />
           <Title>Login</Title>
           <Input
             placeholder="E-mail"
@@ -23,6 +33,9 @@ const Signin = () => {
 
           <Input placeholder="Password" type="secondary" secureTextEntry />
 
+          <ForgotPasswordButton>
+            <ForgorPasswordLabel>Forgot Password?</ForgorPasswordLabel>
+          </ForgotPasswordButton>
           <Button title="Sign in" type="secondary" />
         </Content>
       </KeyboardAvoidingView>
