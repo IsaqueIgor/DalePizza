@@ -4,7 +4,7 @@ import { KeyboardAvoidingView, Platform } from 'react-native';
 import Button from 'src/components/button';
 import Input from 'src/components/input';
 
-import { Content, GradientBackground } from './styles';
+import { Content, GradientBackground, Title } from './styles';
 
 const Signin = () => {
   return (
@@ -13,6 +13,7 @@ const Signin = () => {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         <Content>
+          <Title>Login</Title>
           <Input
             placeholder="E-mail"
             type="secondary"
