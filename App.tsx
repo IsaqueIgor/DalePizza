@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components/native';
 import theme from './src/theme';
 
 import Signin from 'screens/Signin';
+import { AuthProvider } from 'hooks/auth';
+
 import { Platform, StatusBar } from 'react-native';
 
 const App = () => {
@@ -23,7 +25,9 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Signin />
+      <AuthProvider>
+        <Signin />
+      </AuthProvider>
     </ThemeProvider>
   );
 };
