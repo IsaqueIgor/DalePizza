@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { KeyboardAvoidingView, Platform } from 'react-native';
+
+import { useAuth } from 'hooks/auth';
 
 import Button from 'src/components/button';
 import Input from 'src/components/input';
@@ -16,6 +18,15 @@ import {
 } from './styles';
 
 const Signin = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { isLogging, signIn } = useAuth();
+
+  const handleSignIn = () => {
+    signIn(email, password);
+  };
+
   return (
     <GradientBackground>
       <KeyboardAvoidingView
@@ -29,14 +40,25 @@ const Signin = () => {
             type="secondary"
             autoCorrect={false}
             autoCapitalize="none"
+            onChangeText={setEmail}
           />
 
-          <Input placeholder="Password" type="secondary" secureTextEntry />
+          <Input
+            placeholder="Password"
+            type="secondary"
+            secureTextEntry
+            onChangeText={setPassword}
+          />
 
           <ForgotPasswordButton>
             <ForgorPasswordLabel>Forgot Password?</ForgorPasswordLabel>
           </ForgotPasswordButton>
-          <Button title="Sign in" type="secondary" />
+          <Button
+            isLoading={isLogging}
+            title="Sign in"
+            type="secondary"
+            onPress={handleSignIn}
+          />
         </Content>
       </KeyboardAvoidingView>
     </GradientBackground>
