@@ -1,7 +1,14 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from 'react';
 
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Alert } from 'react-native';
 
@@ -21,11 +28,26 @@ type AuthProvideProps = {
   children: ReactNode;
 };
 
+const USER_COLLECTION = '@dalepizza:users';
+
 export const AuthContext = createContext({} as AuthContextData);
 
 const AuthProvider = ({ children }: AuthProvideProps) => {
   const [isLogging, setIsLogging] = useState(false);
   const [user, setUser] = useState<User | null>(null);
+
+  const loadUserStorageData = async () => {
+    setIsLogging(true);
+
+    const storageUser = await AsyncStorage.getItem(USER_COLLECTION);
+
+    if (storageUser) {
+      const userData = JSON.parse(storageUser) as User;
+      setUser(userData);
+    }
+
+    setIsLogging(false);
+  };
 
   const signIn = async (email: string, password: string) => {
     if (!email || !password) {
@@ -41,7 +63,7 @@ const AuthProvider = ({ children }: AuthProvideProps) => {
           .collection('users')
           .doc(account.user.uid)
           .get()
-          .then((profile) => {
+          .then(async (profile) => {
             const { name, isAdmin } = profile.data() as User;
 
             if (profile.exists) {
@@ -50,6 +72,12 @@ const AuthProvider = ({ children }: AuthProvideProps) => {
                 name,
                 isAdmin,
               };
+
+              await AsyncStorage.setItem(
+                USER_COLLECTION,
+                JSON.stringify(userData)
+              );
+
               setUser(userData);
             }
           })
@@ -68,6 +96,10 @@ const AuthProvider = ({ children }: AuthProvideProps) => {
       })
       .finally(() => setIsLogging(false));
   };
+
+  useEffect(() => {
+    loadUserStorageData();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ isLogging, signIn, user }}>
