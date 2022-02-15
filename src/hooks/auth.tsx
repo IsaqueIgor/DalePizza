@@ -20,6 +20,8 @@ type User = {
 
 type AuthContextData = {
   signIn: (email: string, password: string) => Promise<void>;
+  signOut: () => Promise<void>;
+  forgotPassword: (email: string) => Promise<void>;
   isLogging: boolean;
   user: User | null;
 };
@@ -47,6 +49,12 @@ const AuthProvider = ({ children }: AuthProvideProps) => {
     }
 
     setIsLogging(false);
+  };
+
+  const signOut = async (): Promise<void> => {
+    await auth().signOut();
+    await AsyncStorage.removeItem(USER_COLLECTION);
+    setUser(null);
   };
 
   const signIn = async (email: string, password: string) => {
@@ -97,12 +105,35 @@ const AuthProvider = ({ children }: AuthProvideProps) => {
       .finally(() => setIsLogging(false));
   };
 
+  const forgotPassword = async (email: string): Promise<void> => {
+    if (!email) {
+      return Alert.alert('Redifine Password', 'Please enter an valid email');
+    }
+
+    auth()
+      .sendPasswordResetEmail(email)
+      .then(() =>
+        Alert.alert(
+          'Reset Password',
+          'Check your mail box to Reset your password'
+        )
+      )
+      .catch(() =>
+        Alert.alert(
+          'Reset Password',
+          'Error: Couldnt send the email to Reset a password'
+        )
+      );
+  };
+
   useEffect(() => {
     loadUserStorageData();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLogging, signIn, user }}>
+    <AuthContext.Provider
+      value={{ isLogging, forgotPassword, signIn, signOut, user }}
+    >
       {children}
     </AuthContext.Provider>
   );
