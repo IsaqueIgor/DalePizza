@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
 
-import { Container } from './styles';
+import { Container, Header, Title } from './styles';
 
 const Product = () => {
   return (
-    <Container
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-    ></Container>
+    <Container behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      <Header>
+        <Title>Register</Title>
+      </Header>
+    </Container>
   );
 };
 
