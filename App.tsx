@@ -7,6 +7,7 @@ import Signin from 'screens/Signin';
 import { AuthProvider } from 'hooks/auth';
 
 import { Platform, StatusBar } from 'react-native';
+import Product from 'screens/Product';
 
 const App = () => {
   const setStatusBarContentShowing = (): void => {
@@ -26,7 +27,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider>
-        <Signin />
+        <Product />
       </AuthProvider>
     </ThemeProvider>
   );

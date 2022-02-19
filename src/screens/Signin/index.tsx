@@ -3,8 +3,8 @@ import { KeyboardAvoidingView, Platform } from 'react-native';
 
 import { useAuth } from 'hooks/auth';
 
-import Button from '../../components/Button';
-import Input from '../../components/Input';
+import Button from 'components/Button';
+import Input from 'components/Input';
 
 import brandImg from 'assets/brand.png';
 
@@ -24,10 +24,12 @@ const Signin = () => {
   const { isLogging, signIn, forgotPassword } = useAuth();
 
   const handleSignIn = () => {
+    console.log('handleSignIn');
     signIn(email, password);
   };
 
   const handleForgotPassword = () => {
+    console.log('handleForgotPassword');
     forgotPassword(email);
   };
 
@@ -57,6 +59,7 @@ const Signin = () => {
           <ForgotPasswordButton onPress={handleForgotPassword}>
             <ForgorPasswordLabel>Forgot Password?</ForgorPasswordLabel>
           </ForgotPasswordButton>
+
           <Button
             isLoading={isLogging}
             title="Sign in"

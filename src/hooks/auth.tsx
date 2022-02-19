@@ -86,6 +86,8 @@ const AuthProvider = ({ children }: AuthProvideProps) => {
                 JSON.stringify(userData)
               );
 
+              console.log('Login Success');
+              console.log(userData);
               setUser(userData);
             }
           })

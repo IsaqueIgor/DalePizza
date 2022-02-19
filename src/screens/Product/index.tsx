@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import ButtonBack from 'src/components/ButtonBack';
-import Photo from 'src/components/Photo';
+import ButtonBack from 'components/ButtonBack';
+import Photo from 'components/Photo';
 
-import { Container, Header, Title, DeleteLabel } from './styles';
+import {
+  Container,
+  Header,
+  Title,
+  DeleteLabel,
+  PickImageButton,
+  Upload,
+} from './styles';
 
 const Product = () => {
   return (
@@ -17,7 +24,10 @@ const Product = () => {
         </TouchableOpacity>
       </Header>
 
-      <Photo uri={''} />
+      <Upload>
+        <Photo uri={''} />
+        <PickImageButton title="Upload" type="secondary" />
+      </Upload>
     </Container>
   );
 };
