@@ -3,8 +3,8 @@ import { KeyboardAvoidingView, Platform } from 'react-native';
 
 import { useAuth } from 'hooks/auth';
 
-import Button from 'src/components/button';
-import Input from 'src/components/input';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
 
 import brandImg from 'assets/brand.png';
 
