@@ -1,0 +1,6 @@
+export { default as Button } from './Button'
+export { default as ButtonBack } from './ButtonBack'
+export { default as Input } from './Input'
+export { default as InputPrice } from './InputPrice'
+export { default as InputSeparator } from './InputSeparator'
+export { default as Photo } from './Photo'
