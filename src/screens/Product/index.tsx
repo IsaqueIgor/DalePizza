@@ -22,6 +22,7 @@ import {
   MaxCharacters,
 } from './styles';
 import { ProductNavigationProps } from 'src/@types/navigation';
+import { ProductProps } from 'src/components/ProductCard';
 
 type PizzaResponse = ProductProps & {
   photo_path: string;
