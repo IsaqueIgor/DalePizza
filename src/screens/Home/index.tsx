@@ -5,7 +5,16 @@ import { Alert, TouchableOpacity, FlatList } from 'react-native';
 import { useTheme } from 'styled-components/native';
 import { ProductProps } from 'src/components/ProductCard';
 
-import { Container, Header, Greeting, GreetingText } from './styles';
+import {
+  Container,
+  Header,
+  Greeting,
+  GreetingText,
+  MenuHeader,
+  MenuItemsNumber,
+  NewProductButton,
+  Title,
+} from './styles';
 import { useAuth } from 'src/hooks/auth';
 
 const Home = () => {
