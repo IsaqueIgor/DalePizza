@@ -1,0 +1,30 @@
+import styled, { css } from "styled-components/native";
+import { LinearGradient } from "react-native-linear-gradient"
+
+export const Container = styled.View`
+  flex: 1;
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
+`;
+
+export const Header = styled(LinearGradient).attrs(({ theme }) => ({
+  colors: theme.COLORS.GRADIENT
+}))`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 63px 24px 58px;
+`;
+
+export const Greeting = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const GreetingText = styled.Text`
+  font-size: 20px;
+  ${({ theme }) => css`
+    font-family: ${theme.FONTS.TITLE};
+    color: ${theme.COLORS.TITLE};
+  `};
+`;
